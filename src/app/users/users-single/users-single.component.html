@@ -1,0 +1,112 @@
+<div
+  *ngIf="!editMode && !addMode"
+  class="user-page-border"
+  [ngStyle]="textColor"
+>
+  <div class="grid50">
+    <div class="field-space">
+      <label class="bold-text"> Full name: </label>
+      <div>{{ userService.userList[userIndex].fullName }}</div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Username: </label>
+      <div>{{ userService.userList[userIndex].username }}</div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> City: </label>
+      <div>{{ userService.userList[userIndex].city }}</div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Favorite animal: </label>
+      <div>{{ userService.userList[userIndex].favoriteAnimal }}</div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Favorite color: </label>
+      <div>{{ userService.userList[userIndex].favoriteColor }}</div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Gender: </label>
+      <div>{{ userService.userList[userIndex].gender }}</div>
+    </div>
+  </div>
+  <div class="grid50">
+    <div></div>
+    <div class="grid50">
+      <div></div>
+      <div class="grid50">
+        <button
+          class="field-space"
+          (click)="
+            userService.removeUser(userService.userList[userIndex].userId)
+          "
+        >
+          Delete
+        </button>
+        <button
+          class="field-space"
+          (click)="toggleEdit(true, userService.userList[userIndex])"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form
+  *ngIf="editMode || addMode"
+  class="user-page-border"
+  (ngSubmit)="submitEdit()"
+  [ngStyle]="textColor"
+>
+  <!-- in a form, if you hit enter it will look for the first valid button without a type on it or with a type of submit -->
+  <!-- so we have to change the type of our cancel button otherwise that one will be the first valid button -->
+  <div class="grid50">
+    <div class="field-space">
+      <label class="bold-text"> Full name: </label>
+      <div><input name="fullName" [(ngModel)]="userForEdit.fullName" /></div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Username: </label>
+      <div><input name="username" [(ngModel)]="userForEdit.username" /></div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> City: </label>
+      <div><input name="city" [(ngModel)]="userForEdit.city" /></div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Favorite animal: </label>
+      <div>
+        <input name="favoriteAnimal" [(ngModel)]="userForEdit.favoriteAnimal" />
+      </div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Favorite color: </label>
+      <div>
+        <input name="favoriteColor" [(ngModel)]="userForEdit.favoriteColor" />
+      </div>
+    </div>
+    <div class="field-space">
+      <label class="bold-text"> Gender: </label>
+      <div><input name="gender" [(ngModel)]="userForEdit.gender" /></div>
+    </div>
+  </div>
+
+  <div class="grid50">
+    <div></div>
+    <div class="grid50">
+      <div></div>
+      <div class="grid50">
+        <button class="field-space" type="button" (click)="toggleEdit(false)">
+          Cancel
+        </button>
+        <button class="field-space" type="submit">
+          <!-- (click)="submitEdit()" -->
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button (click)="deleteUser.emit(userIndex)">Delete</button> -->
+</form>

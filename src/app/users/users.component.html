@@ -1,0 +1,25 @@
+<div class="page-width">
+  <div class="field-space">
+    <button (click)="addNewUser()">Add new User</button>
+  </div>
+  <div class="field-space">
+    <input [(ngModel)]="userSearch" />
+    <button (click)="getUsers()">Update List</button>
+  </div>
+  <div *ngIf="addingNewUser">
+    <app-users-single [addMode]="true"></app-users-single>
+  </div>
+  <div *ngFor="let user of userService.userList; let userIndex = index">
+    <app-users-single [userIndex]="userIndex"></app-users-single>
+  </div>
+</div>
+
+<!-- <ol>
+  <li *ngFor="let user of userService.userList; let userIndex = index">
+    <app-users-single [userIndex]="userIndex"></app-users-single>
+  </li>
+</ol> -->
+
+<!-- (deleteUser)="removeUser($event)" -->
+<!-- was passed with 
+      [userIndex]="userIndex" before to receive an event before it was moved over to the service -->

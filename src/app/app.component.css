@@ -1,0 +1,35 @@
+/* only app.component will have access to this css file */
+.spaced {
+  margin: 15px;
+}
+
+.block-of-color {
+  background-color: blue;
+  width: 300px;
+  height: 300px;
+}
+
+.context-menu {
+  position: absolute;
+  border: black solid 1px;
+  background-color: antiquewhite;
+  padding: 10px;
+}
+
+.tooltip {
+  position: absolute;
+  border: black solid 1px;
+  background-color: rgb(172, 233, 190);
+  padding: 10px;
+  width: 100px;
+}
+
+.tooltip-color {
+  background-color: green;
+  cursor: pointer;
+}
+
+.hide-content {
+  /* none makes something still on the page, but not visible */
+  display: none;
+}

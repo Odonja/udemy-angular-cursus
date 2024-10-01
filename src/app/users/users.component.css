@@ -1,0 +1,5 @@
+.page-width {
+  width: 70vw;
+  /*  70vw means to set it to 70% of the view width*/
+  margin: auto;
+}

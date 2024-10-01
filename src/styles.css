@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files, all htmls in your project will have acess to this css file*/
+.grid50 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.bold-text {
+  font-weight: 600;
+}
+
+.field-space {
+  margin: 2px 5px 2px 5px;
+}
