@@ -1,0 +1,85 @@
+<div class="hide-content">
+  <div class="spaced">
+    helloworld
+    <br />
+    {{ helloWorld + " - " + title }}
+  </div>
+
+  <div class="spaced">
+    <!-- parethesis are used for 1 way databinding (outgoing), they are used for sending something out of the html into the typescript -->
+    <!-- you could use this. before the method name, but it is not needed, depends on the style the team uses -->
+    <button (click)="incrementClicked()">Click me</button>
+    <br />
+    The button was clicked {{ clicked }} times.
+    <br />
+
+    <!-- []] are used for 1 way databinding (incomming), they are used for pulling data out of the typescript  -->
+    <!-- <input [value]="clicked" /> -->
+    <!-- <input [(ngModel)]="clicked" /> -->
+    <input [(ngModel)]="clicked" type="number" />
+  </div>
+
+  <div class="spaced">
+    <button (dblclick)="incrementDoubleClicked()">Double Click me</button>
+    <br />
+    The button was double clicked {{ doubleClicked }} times.
+  </div>
+
+  <div class="spaced" *ngIf="clicked == doubleClicked">
+    You have double clicked as many as clicked
+  </div>
+
+  <div class="spaced">
+    <div *ngFor="let number of valuesToLoopThrough; let indexOut = index">
+      Boilerplate, this is one of the numbers
+      <br />
+      {{ indexOut }}. {{ number }}
+    </div>
+  </div>
+
+  <!-- the * is only used with directives like ngIf and ngFor, no need for databinding -->
+  <!-- ngIf is not hiding things, if the value is valse then it is removing it as if it did not exist at all, so you also cant reference it -->
+  <div class="spaced" *ngIf="willShowBlock">
+    This is the conditionally displayed block
+  </div>
+
+  <!-- [ngStyle]="tooltipInfo.willShow ? { 'background-color': 'green' } : {}"   -->
+  <!-- you can also use instead of ngClass -->
+  <div
+    class="block-of-color"
+    [ngClass]="tooltipInfo.willShow ? 'tooltip-color' : ''"
+    (contextmenu)="toggleContextMenu(true, $event)"
+    (mouseenter)="onMouseMove(true, $event)"
+    (mouseleave)="onMouseMove(false, $event)"
+    (mousemove)="onMouseMove(true, $event)"
+  ></div>
+
+  <div
+    *ngIf="contextMenuInfo.willShow"
+    class="context-menu"
+    [style.left.px]="contextMenuInfo.pageX"
+    [style.top.px]="contextMenuInfo.pageY"
+    (click)="contextClick()"
+  >
+    This is the context menu
+  </div>
+
+  <div
+    *ngIf="tooltipInfo.willShow"
+    class="tooltip"
+    [style.left.px]="tooltipInfo.pageX"
+    [style.top.px]="tooltipInfo.pageY"
+  >
+    This is the tooltip
+  </div>
+</div>
+<!-- the above is hidden because of the class on the first line -->
+
+<button (click)="setShowUsers(!willShowUsers)">Show Users</button>
+<br />
+
+<input [(ngModel)]="textColorForChange" type="color" />
+<button (click)="triggerColorChange()">Trigger color change</button>
+<div class="spaced" *ngIf="willShowUsers">
+  <app-users></app-users>
+</div>
