@@ -7,9 +7,11 @@ import { UsersComponent } from './users/users.component';
 import { FormsModule } from '@angular/forms';
 import { UsersSingleComponent } from './users/users-single/users-single.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { AngularPracticeComponent } from './old/angular-practice/angular-practice.component';
 
 @NgModule({
-  declarations: [AppComponent, UsersComponent, UsersSingleComponent],
+  declarations: [AppComponent, UsersComponent, UsersSingleComponent, LoginComponent, AngularPracticeComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

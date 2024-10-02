@@ -64,6 +64,12 @@ export class UserService {
     }
   }
 
+  getSingleUser(userId: number) {
+    return this.httpService.get<User>(
+      'http://localhost:3000/user/userSingle/' + userId
+    );
+  }
+
   postUser(userForAdd: User) {
     return this.httpService.post(
       'http://localhost:3000/user/addUser',

@@ -1,51 +1,62 @@
+<div *ngIf="isSingleUser">
+  <button (click)="goToUserList()">Go back to list</button>
+</div>
+
 <div
-  *ngIf="!editMode && !addMode"
+  *ngIf="!editMode && !addMode && !displayUser"
+  class="user-page-border"
+  [ngStyle]="textColor"
+>
+  <h4>No user found!</h4>
+</div>
+
+<div
+  (click)="isSingleUser ? null : goToSingleUser(userForDisplay.userId)"
+  *ngIf="!editMode && !addMode && displayUser"
   class="user-page-border"
   [ngStyle]="textColor"
 >
   <div class="grid50">
     <div class="field-space">
       <label class="bold-text"> Full name: </label>
-      <div>{{ userService.userList[userIndex].fullName }}</div>
+      <div>{{ userForDisplay.fullName }}</div>
     </div>
     <div class="field-space">
       <label class="bold-text"> Username: </label>
-      <div>{{ userService.userList[userIndex].username }}</div>
+      <div>{{ userForDisplay.username }}</div>
     </div>
+  </div>
+
+  <div *ngIf="isSingleUser" class="grid50">
     <div class="field-space">
       <label class="bold-text"> City: </label>
-      <div>{{ userService.userList[userIndex].city }}</div>
+      <div>{{ userForDisplay.city }}</div>
     </div>
     <div class="field-space">
       <label class="bold-text"> Favorite animal: </label>
-      <div>{{ userService.userList[userIndex].favoriteAnimal }}</div>
+      <div>{{ userForDisplay.favoriteAnimal }}</div>
     </div>
     <div class="field-space">
       <label class="bold-text"> Favorite color: </label>
-      <div>{{ userService.userList[userIndex].favoriteColor }}</div>
+      <div>{{ userForDisplay.favoriteColor }}</div>
     </div>
     <div class="field-space">
       <label class="bold-text"> Gender: </label>
-      <div>{{ userService.userList[userIndex].gender }}</div>
+      <div>{{ userForDisplay.gender }}</div>
     </div>
   </div>
-  <div class="grid50">
+  <div *ngIf="isSingleUser" class="grid50">
     <div></div>
     <div class="grid50">
       <div></div>
       <div class="grid50">
         <button
           class="field-space"
-          (click)="
-            userService.removeUser(userService.userList[userIndex].userId)
-          "
+          (click)="userService.removeUser(userForDisplay.userId)"
         >
           Delete
         </button>
-        <button
-          class="field-space"
-          (click)="toggleEdit(true, userService.userList[userIndex])"
-        >
+        <button class="field-space" (click)="toggleEdit(true, userForDisplay)">
           Edit
         </button>
       </div>
